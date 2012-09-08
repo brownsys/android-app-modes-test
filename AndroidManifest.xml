@@ -22,8 +22,7 @@
         </activity>
 
         <service
-            android:name=".ModeProxyService"
-            android:process=":remote" >
+            android:name=".ModeProxyService" >
         </service>
     </application>
 
