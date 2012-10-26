@@ -18,11 +18,9 @@ import edu.brown.cs.systems.modes.lib.IModeService;
 public class ModeProxyService extends Service {
 
     private static final String TAG = "ModeService";
-    private int uid;
 
     public void onCreate() {
         super.onCreate();
-        uid = getApplicationInfo().uid;
         Log.d(TAG, "onCreate()");
     }
 
@@ -40,8 +38,8 @@ public class ModeProxyService extends Service {
     public IBinder onBind(Intent intent) {
         return new IModeService.Stub() {
 
-            public boolean setMode(long modeId) throws RemoteException {
-                Log.d(TAG, String.format("setMode(): %d", modeId));
+            public boolean setMode(String modeName) throws RemoteException {
+                Log.d(TAG, String.format("setMode(): %s", modeName));
                 return false;
             }
 
@@ -49,9 +47,9 @@ public class ModeProxyService extends Service {
                 Log.d(TAG, "getModes()");
                 List<ModeData> modes = new ArrayList<ModeData>();
 
-                ModeData data = new ModeData(1, "Mode1", uid, "Mode number one");
+                ModeData data = new ModeData("Mode1", "Mode number one");
                 modes.add(data);
-                data = new ModeData(2, "Mode2", uid, "Mode number two");
+                data = new ModeData("Mode2", "Mode number two");
                 modes.add(data);
                 return modes;
             }
