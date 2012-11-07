@@ -21,8 +21,10 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".ModeProxyService" >
+        <service android:name=".ModeProxyService" >
+            <intent-filter>
+                <action android:name="edu.brown.cs.modes.app.ModeProxyService" />
+            </intent-filter>
         </service>
     </application>
 
